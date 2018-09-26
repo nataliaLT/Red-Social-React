@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
-import PublicacionPerfil from '../PublicacionPerfil/PublicacionPerfil';
-import '../PublicacionesPerfil/PublicacionesPerfil'
+import React, { Component } from "react";
+import PublicacionPerfil from "../PublicacionPerfil/PublicacionPerfil";
+import "../PublicacionesPerfil/PublicacionesPerfil";
 
 class PublicacionesPerfil extends Component {
 
   renderMensajes(){
-    const mensajes = JSON.parse(localStorage.getItem('items')) || []
+    let mensajes = JSON.parse(localStorage.getItem("items")) || []
+    const user = JSON.parse(localStorage.getItem("user")) 
+    mensajes = mensajes.filter(mensaje => mensaje.user === user.displayName)
     return mensajes.map((mensaje)=>{
-      return <PublicacionPerfil /* author={mensaje.key} */ text={mensaje.text} />
+      return <PublicacionPerfil  author={mensaje.user} text={mensaje.text} likes={mensaje.like} />
     })
   }
 
   render(){
     return(
-      <div className='PublicacionesPerfil'>
+      <div className="PublicacionesPerfil">
         {this.renderMensajes()}
       </div>
     )

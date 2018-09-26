@@ -1,18 +1,5 @@
 import { auth } from "./firebase";
 
-// Sign out
-const logout = () =>{
-  localStorage.removeItem("user") 	
-  auth.signOut()
-    .then(() => {
-      console.log("Usuario finalizó su sesión");
-    })
-    .catch((error) => {
-      console.log("Error de firebase > Código > " + error.code);
-      console.log("Error de firebase > Mensaje > " + error.message);
-    });
-}
-
 const createUser= (username, email, password) => {
   return new Promise( (resolve, reject)=> {
     auth.createUserWithEmailAndPassword(email, password)
@@ -70,6 +57,19 @@ const login = (email, password) => {
         reject(error)
       });
   })
+}
+
+// Sign out
+const logout = () =>{
+  localStorage.removeItem("user") 	
+  auth.signOut()
+    .then(() => {
+      console.log("Usuario finalizó su sesión");
+    })
+    .catch((error) => {
+      console.log("Error de firebase > Código > " + error.code);
+      console.log("Error de firebase > Mensaje > " + error.message);
+    });
 }
   
 

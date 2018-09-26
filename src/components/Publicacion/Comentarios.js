@@ -3,6 +3,7 @@ import "./Comentarios.css";
 import UserImg2 from "../../img/usuaria2.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Like from '../Publicacion/Like';
 
 class Comentarios extends Component {
 
@@ -11,7 +12,7 @@ class Comentarios extends Component {
 		let localItems = window.localStorage.getItem('items');
 		let actualItems = (localItems !== null ? JSON.parse(localItems) : [])
 		this.state = {
-			contador: 0,
+			like: 0,
 			modal: false,
 			items: actualItems
 		}
@@ -20,11 +21,13 @@ class Comentarios extends Component {
 
 		console.log('comentarios', this.props.items);
 	}
-	incremetar() {
-		this.setState({
-			contador: this.state.contador + 1
+	
+	/*incremetar() {
+        this.setState({
+		like: this.state.like + 1
 		})
-	}
+		
+	}*/
 
 	toggle() {
 		this.setState({
@@ -47,7 +50,6 @@ class Comentarios extends Component {
 	}
 
 	render() {
-		var user= JSON.parse(localStorage.getItem("user"));
 		const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
 		return (
 			<main>
@@ -60,16 +62,10 @@ class Comentarios extends Component {
 						</div>
 						<div className="col">
 							<div className="post">
-								<a href="" className="nombre">{user.displayName}</a>
+							  <a href="" className="nombre">{this.props.user}</a> 
 								<p className="texto">{this.props.text}</p>
 								<hr/>
-								<div className="caja-botones d-flex justify-content-between align-items-center">
-					              
-									<button onClick={this.incremetar.bind(this)}><FontAwesomeIcon icon="heart" /></button>
-									<button onClick={this.toggle}><FontAwesomeIcon icon="trash-alt" /></button>
-									<p>{this.state.contador}<FontAwesomeIcon icon="heart" /></p>
-								</div>
-
+								<Like />
 							</div>
 						</div>
 
@@ -91,3 +87,4 @@ class Comentarios extends Component {
 	}
 }
 export default Comentarios;
+

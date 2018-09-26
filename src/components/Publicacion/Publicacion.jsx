@@ -4,15 +4,14 @@ import CommentList from './CommentList';
 import FormsPublicacion from './FormsPublicacion';
 
 class Publicacion extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         let localItems = window.localStorage.getItem('items');
         let actualItems = (localItems!==null? JSON.parse(localItems):[])
-        console.log(actualItems);
         this.state = {// Guardar los elementos
-            items: actualItems
+           items: actualItems
         }
-        console.log(this.state)
+       // console.log(this.state)
         this.addComment = this.addComment.bind(this);
     }
     
@@ -25,7 +24,9 @@ class Publicacion extends Component {
             return;
         }
 
+        var user= JSON.parse(localStorage.getItem("user"));
         let newItem = {
+            user: user.displayName,
             text: newComment,
             key: Date.now(),
             like:0
@@ -37,13 +38,14 @@ class Publicacion extends Component {
             return {
                 items:temp
             }
-        });
+        });        
         // Referencia al input
         event.target.mensaje.value = '';
-        console.log(this.state)
-        
+        console.log(this.state)       
 
     }
+
+
     render(){
         return(
         <div>
