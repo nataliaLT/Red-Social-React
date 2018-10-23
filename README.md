@@ -11,7 +11,12 @@ pero en esta versión se trabajó con la librería React.
 
 [Vegan](https://noeliasabando.github.io/Red-Social-React/)
 
+# Proyecto
+
+![veganmodal](https://user-images.githubusercontent.com/39282668/47385559-05951c80-d6d0-11e8-948e-d16ac663fa66.png)
+
 # Planificación de proyecto
 
 [Trello](https://trello.com/b/p1iJSwEI/proyecto-1-react)
+
 
